@@ -26,7 +26,7 @@ type diceResponse struct {
 }
 
 // The RollDice function
-func (module DiceModule) rollDie(r *http.Request) JSONResponse {
+func (module DiceModule) rollDie(r *JSONRequest) JSONResponse {
 	value := rand.Intn(6) + 1
 
 	return JSONResponse{

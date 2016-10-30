@@ -26,7 +26,7 @@ type coinResponse struct {
 }
 
 // The coinFlip function
-func (module CoinModule) flipCoin(r *http.Request) JSONResponse {
+func (module CoinModule) flipCoin(r *JSONRequest) JSONResponse {
 	value := rand.Intn(2) + 1
 
 	var side string

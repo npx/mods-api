@@ -17,8 +17,11 @@ func handle404(w http.ResponseWriter, r *http.Request) {
 
 func makeHandler(endpoint Endpoint) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		// creating an object of JSONRequest
+		rq := JSONRequest{r}
+
 		// Run module's handler function
-		response := endpoint.Handler(r)
+		response := endpoint.Handler(&rq)
 		// Respond
 		respond(response, w)
 	}

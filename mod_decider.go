@@ -1,9 +1,6 @@
 package modsapi
 
-import (
-	"encoding/json"
-	"net/http"
-)
+import "net/http"
 
 // DeciderModule is the implementation of a Module that makes decisions
 type DeciderModule struct{}
@@ -29,10 +26,10 @@ type deciderResponse struct {
 }
 
 // post handler
-func (module DeciderModule) postDecide(r *http.Request) JSONResponse {
+func (module DeciderModule) postDecide(r *JSONRequest) JSONResponse {
 	// Only allow POST requests
 	// TODO define allowed methods in endpoints
-	if r.Method != "POST" {
+	if r.RawRequest.Method != "POST" {
 		return JSONResponse{
 			http.StatusMethodNotAllowed,
 			JSONError{"Method Not Allowed", "Only POST allowed"},
@@ -40,10 +37,8 @@ func (module DeciderModule) postDecide(r *http.Request) JSONResponse {
 	}
 
 	// Decode JSON body
-	// TODO wrap http.Request and get parsed json body from there
 	var request deciderRequest
-	decoder := json.NewDecoder(r.Body)
-	err := decoder.Decode(&request)
+	err := r.ParsedBody(&request)
 	if err != nil {
 		return JSONResponse{
 			http.StatusBadRequest,
@@ -53,7 +48,6 @@ func (module DeciderModule) postDecide(r *http.Request) JSONResponse {
 			},
 		}
 	}
-	defer r.Body.Close()
 
 	// Make sure there are at least 2 choices
 	choices := request
