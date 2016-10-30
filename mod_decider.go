@@ -39,7 +39,7 @@ func (module DeciderModule) postDecide(r *JSONRequest) JSONResponse {
 	// Decode JSON body
 	// TODO wrap http.Request and get parsed json body from there
 	var request deciderRequest
-	err := r.ParsedBody(request)
+	err := r.ParsedBody(&request)
 	if err != nil {
 		return JSONResponse{
 			http.StatusBadRequest,
