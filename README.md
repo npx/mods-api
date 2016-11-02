@@ -2,8 +2,16 @@
 Simple API hosted on GAE with the intention to easily extend it with more
 modules.
 
+Hosted at: https://mods-api.appspot.com/
+
+# Examples
+```
+curl https://mods-api.appspot.com/coin/flip
+curl https://mods-api.appspot.com/dice/roll
+curl -X POST https://mods-api.appspot.com/decider -d '["apple", "oranges"]'
+```
+
 ## TODO
-* Wrap the Request and give utility methods (e.g. ParseBody(*interface))
 * Make a Server "class"
 * Define Http Method in endpoints and handle `Method Not Allowed` globally
 * More modules
