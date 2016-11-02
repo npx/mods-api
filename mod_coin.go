@@ -27,13 +27,10 @@ type coinResponse struct {
 
 // The coinFlip function
 func (module CoinModule) flipCoin(r *JSONRequest) JSONResponse {
-	value := rand.Intn(2) + 1
+	value := rand.Intn(2)
 
-	var side string
-
-	if value == 1 {
-		side = "heads"
-	} else {
+	side := "heads"
+	if value < 1 {
 		side = "tails"
 	}
 
