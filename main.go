@@ -11,10 +11,7 @@ var modules = []module.Module{
 	module.CoinModule{},
 }
 
-func init() {
-	server.Setup(modules)
-}
-
 func main() {
+	server.Setup(modules)
 	server.Start()
 }
