@@ -1,4 +1,4 @@
-package modsapi
+package module
 
 import (
 	"math/rand"
