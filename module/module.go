@@ -1,4 +1,4 @@
-package modsapi
+package module
 
 import (
 	"encoding/json"
@@ -19,8 +19,8 @@ type Endpoint struct {
 
 // JSONResponse holds the status code and the body of the response
 type JSONResponse struct {
-	status int
-	body   interface{}
+	Status int
+	Body   interface{}
 }
 
 // JSONError defines what an error should look like across the API

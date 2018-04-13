@@ -1,11 +1,20 @@
-package modsapi
+package main
 
-var modules = []Module{
-	DeciderModule{},
-	DiceModule{},
-	CoinModule{},
+import (
+	"github.com/npx/mods-api/module"
+	"github.com/npx/mods-api/server"
+)
+
+var modules = []module.Module{
+	module.DeciderModule{},
+	module.DiceModule{},
+	module.CoinModule{},
 }
 
 func init() {
-	setupServer(modules)
+	server.Setup(modules)
+}
+
+func main() {
+	server.Start()
 }

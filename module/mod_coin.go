@@ -1,4 +1,4 @@
-package modsapi
+package module
 
 import (
 	"math/rand"
@@ -17,6 +17,7 @@ func (module CoinModule) ID() string {
 func (module CoinModule) Endpoints() []Endpoint {
 	return []Endpoint{
 		Endpoint{"/flip", module.flipCoin},
+		Endpoint{"/toss", module.flipCoin},
 	}
 }
 

@@ -1,12 +1,14 @@
-package modsapi
+package server
 
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/npx/mods-api/module"
 )
 
-// TODO make a server "class"
-func setupServer(modules []Module) {
+// Setup the server
+func Setup(modules []module.Module) {
 	// Register all modules
 	for _, module := range modules {
 		registerModule(module)
@@ -16,18 +18,23 @@ func setupServer(modules []Module) {
 	http.HandleFunc("/", handle404)
 }
 
-func respond(response JSONResponse, w http.ResponseWriter) {
+// Start the server
+func Start() {
+	http.ListenAndServe("0.0.0.0:8000", nil)
+}
+
+func respond(response module.JSONResponse, w http.ResponseWriter) {
 	// Set Response Headers
 	w.Header().Set("Content-Type", "application/json")
 
 	// Set Status Code
-	w.WriteHeader(response.status)
+	w.WriteHeader(response.Status)
 
 	// Encode json and respond
-	json.NewEncoder(w).Encode(response.body)
+	json.NewEncoder(w).Encode(response.Body)
 }
 
-func registerModule(module Module) {
+func registerModule(module module.Module) {
 	basePath := "/" + module.ID()
 	for _, endpoint := range module.Endpoints() {
 		route := basePath + endpoint.Route
