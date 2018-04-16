@@ -1,5 +1,11 @@
 # Mods API (WIP)
-Very Simplistic and dockerzied Golang API
+Very Simplistic and dockerzied Golang API, currently deployed at http://52.168.124.14/coin/flip.
+
+# Building and running the container
+```
+make build
+make run
+```
 
 # Examples
 ```

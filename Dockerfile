@@ -10,4 +10,5 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /root/
 COPY --from=builder /go/src/github.com/npx/mods-api/main .
+EXPOSE 8000
 CMD ["./main"]
